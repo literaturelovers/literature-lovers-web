@@ -1,0 +1,72 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String           @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  email   String  @unique
+  phone   String?
+  password String
+  role String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model EBooks {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+
+  title       String  @db.String
+  description String? @db.String
+  imageUrl    String? @db.String
+  resourceUrl String? @db.String
+  isPublished Boolean? @default(false)
+
+  categoryId  String?    @db.ObjectId
+  category    Category?  @relation(fields: [categoryId], references: [id])
+
+  attachments EBookAttachment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categoryId])
+  @@fulltext([title])
+}
+
+model Category {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId
+  name   String   @unique
+
+  eBooks EBooks[]
+}
+
+model EBookAttachment {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  url        String  @db.String
+  eBookId    String  @db.ObjectId
+  eBook      EBooks  @relation(fields: [eBookId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([eBookId])
+}
+
+model StudentLead {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  phone     String   @unique
+  eBookId   String?  @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([eBookId])
+}
