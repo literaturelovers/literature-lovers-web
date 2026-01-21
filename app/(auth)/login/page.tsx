@@ -56,11 +56,10 @@ export default function SignInForm() {
 
             const { user } = response.data;
             if (user) {
-                localStorage.setItem("email", user.email);
                 localStorage.setItem("user", JSON.stringify(user));
             }
 
-            router.push("/admin");
+            router.push("/admin/e-books");
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
             // Simplified error handling

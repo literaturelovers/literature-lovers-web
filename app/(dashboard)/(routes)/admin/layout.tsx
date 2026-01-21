@@ -3,14 +3,14 @@ import { redirect } from "next/navigation";
 import { Navbar } from "./_components/navbar";
 import Sidebar from "./_components/sidebar";
 
-const AdminLayout = ({
+const AdminLayout = async ({
     children
 }: {
     children: React.ReactNode;
 }) => {
 
-    if (!isAdmin()) {
-        return redirect("/");
+    if (!(await isAdmin())) {
+        redirect("/");
     }
 
     return (

@@ -3,7 +3,10 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { db } from '@/lib/db';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  throw new Error("JWT_SECRET is not defined in environment variables");
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -28,7 +31,7 @@ export async function POST(request: NextRequest) {
     const adminUser = await db.user.findUnique({
       where: {
         email: normalizedEmail,
-        role: 'admin'
+        role: "admin"
       }
     });
 
