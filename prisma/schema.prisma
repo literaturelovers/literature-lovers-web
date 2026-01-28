@@ -20,7 +20,7 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
-model EBooks {
+model Document {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
 
   title       String  @db.String
@@ -32,7 +32,7 @@ model EBooks {
   categoryId  String?    @db.ObjectId
   category    Category?  @relation(fields: [categoryId], references: [id])
 
-  attachments EBookAttachment[]
+  attachments DocumentAttachment[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -45,28 +45,31 @@ model Category {
   id     String   @id @default(auto()) @map("_id") @db.ObjectId
   name   String   @unique
 
-  eBooks EBooks[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  documents Document[]
 }
 
-model EBookAttachment {
+model DocumentAttachment {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   name       String
   url        String  @db.String
-  eBookId    String  @db.ObjectId
-  eBook      EBooks  @relation(fields: [eBookId], references: [id], onDelete: Cascade)
+  documentId    String  @db.ObjectId
+  document     Document  @relation(fields: [documentId], references: [id], onDelete: Cascade)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  @@index([eBookId])
+  @@index([documentId])
 }
 
 model StudentLead {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   phone     String   @unique
-  eBookId   String?  @db.ObjectId
+  documentId   String?  @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([eBookId])
+  @@index([documentId])
 }

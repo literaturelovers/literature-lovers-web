@@ -14,13 +14,13 @@ const bodySchema = z.object({
       const parsed = parsePhoneNumberFromString(v);
       return Boolean(parsed?.isValid());
     }, "Invalid phone number"),
-  eBookId: z.string().trim().optional(),
+  documentId: z.string().trim().optional(),
 });
 
 export async function POST(req: Request) {
   try {
     const json = await req.json();
-    const { name, phone, eBookId } = bodySchema.parse(json);
+    const { name, phone, documentId } = bodySchema.parse(json);
 
     const existingLead = await db.studentLead.findUnique({
       where: {
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
         data: {
           name,
           phone,
-          ...(eBookId ? { eBookId } : {}),
+          ...(documentId ? { documentId } : {}),
         },
       });
       return NextResponse.json({ success: true });
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
       data: {
         name,
         phone,
-        ...(eBookId ? { eBookId } : {}),
+        ...(documentId ? { documentId } : {}),
       },
     });
 

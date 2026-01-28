@@ -2,12 +2,12 @@
 import React from "react";
 
 interface TabButtonsProps {
-  selectedTab: 'ebooks' | 'categories';
-  setSelectedTab: (tab: 'ebooks' | 'categories') => void;
+  selectedTab: 'documents' | 'categories';
+  setSelectedTab: (tab: 'documents' | 'categories') => void;
 }
 
 const TABS = [
-  { key: 'ebooks', label: 'eBooks' },
+  { key: 'documents', label: 'document' },
   { key: 'categories', label: 'Categories' },
 ] as const;
 
@@ -20,7 +20,7 @@ const TabButtons: React.FC<TabButtonsProps> = ({ selectedTab, setSelectedTab }) 
           transition-transform duration-300
         `}
         style={{
-          transform: selectedTab === "ebooks" ? "translateX(0%)" : "translateX(100%)",
+          transform: selectedTab === "documents" ? "translateX(0%)" : "translateX(100%)",
         }}
       />
       {TABS.map((tab) => (

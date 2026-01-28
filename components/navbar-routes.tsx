@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { Logo } from "@/app/(dashboard)/(routes)/admin/_components/logo";
+import { Logo } from "@/app/admin/_components/logo";
 import { CircleUser } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
@@ -59,11 +59,11 @@ export const NavbarRoutes = () => {
 
     return (
         <>
-            <Link href="/home" className="md:hidden">
+            <Link href="/" className="md:hidden">
                 <Logo/>
             </Link>
             <div className="flex gap-x-2 ml-auto">
-                <Link href="/home" className="hidden md:block">
+                <Link href="/" className="hidden md:block">
                     <Button size="sm" variant="ghost">
                         Home
                     </Button>

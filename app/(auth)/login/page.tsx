@@ -59,7 +59,7 @@ export default function SignInForm() {
                 localStorage.setItem("user", JSON.stringify(user));
             }
 
-            router.push("/admin/e-books");
+            router.push("/admin/documents");
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
             // Simplified error handling

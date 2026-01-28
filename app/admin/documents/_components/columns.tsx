@@ -1,0 +1,100 @@
+"use client"
+
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { Document } from "@prisma/client";
+import { ColumnDef } from "@tanstack/react-table";
+import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+export const columns: ColumnDef<Document>[] = [
+    {
+        accessorKey: "title",
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                >
+                    Title
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            )
+        },
+    },
+    {
+        accessorKey: "category.name",
+        header: () => {
+            return (
+                <Button
+                    variant="ghost"
+                >
+                    Category
+                </Button>
+            )
+        },
+    },
+    {
+        accessorKey: "isPublished",
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                >
+                    Published
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            )
+        },
+        cell: ({ row }) => {
+            const isPublished = row.getValue("isPublished") || false;
+
+            return (
+                <Badge className={cn(
+                    "bg-slate-500",
+                    isPublished && "bg-black"
+                )}>
+                    {
+                        isPublished ? "Published" : "Draft"
+                    }
+                </Badge>
+            )
+        }
+    },
+    {
+        id: "actions",
+        cell: ({ row }) => {
+            const { id } = row.original;
+
+            return (
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" className="p-0 h-4 w-8">
+                            <span className="sr-only">
+                                Open Menu
+                            </span>
+                            <MoreHorizontal className="h-4 w-4"/>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <Link href={`/admin/documents/${id}`}>
+                            <DropdownMenuItem>
+                                <Pencil className="h-4 w-4 mr-2" />
+                                Edit
+                            </DropdownMenuItem>
+                        </Link>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            )
+        }
+    }
+]
