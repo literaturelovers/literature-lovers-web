@@ -52,7 +52,7 @@ export const DocumentsGrid = ({ documents }: { documents: DocumentListItem[] }) 
   const isSubmitting = form.formState.isSubmitting;
 
   const onCardClick = (documentId: string) => {
-    setSelecteddocumentId(documentId);
+    setSelectedDocumentId(documentId);
     setOpen(true);
   };
 
