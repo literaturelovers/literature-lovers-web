@@ -52,6 +52,10 @@ export const DocumentsGrid = ({ documents }: { documents: DocumentListItem[] }) 
   const isSubmitting = form.formState.isSubmitting;
 
   const onCardClick = (documentId: string) => {
+    if (typeof window !== "undefined" && localStorage.getItem("literatureLoversDocumentFormSeen") === "true") {
+      window.open(`/${documentId}/read`, "_blank", "noopener,noreferrer");
+      return;
+    }
     setSelectedDocumentId(documentId);
     setOpen(true);
   };
@@ -73,6 +77,11 @@ export const DocumentsGrid = ({ documents }: { documents: DocumentListItem[] }) 
           "Failed to save details";
         toast.error(msg);
         return;
+      }
+
+      // Store flag in localStorage so the form appears only once
+      if (typeof window !== "undefined") {
+        localStorage.setItem("literatureLoversDocumentFormSeen", "true");
       }
 
       setOpen(false);
