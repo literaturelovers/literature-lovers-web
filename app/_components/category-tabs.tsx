@@ -47,8 +47,8 @@ export const CategoryTabs = ({
             tabIndex={tab.id === selected ? 0 : -1}
             className={
               tab.id === selected
-                ? "flex items-center px-8 py-3 bg-white text-slate-900 text-xs tracking-[0.3em] uppercase font-bold shadow-md border border-slate-100 border-b-0 whitespace-nowrap"
-                : "flex items-center px-8 py-3 text-slate-800 text-xs tracking-[0.3em] uppercase font-medium hover:text-slate-800 whitespace-nowrap transition-colors"
+                ? "flex items-center px-8 py-3 bg-white text-slate-900 text-xs tracking-wide uppercase font-bold shadow-md border border-slate-100 border-b-0 whitespace-nowrap"
+                : "flex items-center px-8 py-3 text-slate-800 text-xs tracking-wide uppercase font-medium hover:text-slate-800 whitespace-nowrap transition-colors"
             }
           >
             <span>{tab.label}</span>

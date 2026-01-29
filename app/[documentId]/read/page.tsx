@@ -1,7 +1,8 @@
 import { redirect } from "next/navigation";
 
 import { db } from "@/lib/db";
-import { PDFViewer } from "../_components/SecurePdfViewer";
+import { PdfViewer } from "../_components/SecurePdfViewer";
+import { ClientOnly } from "../_components/client-only";
 
 const DocumentReadPage = async ({ params }: { params: { documentId: string } }) => {
   const Document = await db.document.findUnique({
@@ -26,8 +27,10 @@ const DocumentReadPage = async ({ params }: { params: { documentId: string } }) 
   }
 
   return (
-    <div className="max-w-8xl mx-auto p-4 flex justify-center items-center">
-      <PDFViewer pdfUrl={pdfUrl} />
+    <div className="w-full h-screen">
+      <ClientOnly>
+        <PdfViewer pdfUrl={pdfUrl} />
+      </ClientOnly>
     </div>
   );
 };

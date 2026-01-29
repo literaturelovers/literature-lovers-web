@@ -12,22 +12,22 @@ export const Navbar = () => {
                 </Link>
                 <div className="flex gap-x-2 ml-auto">
                     <Link href="/" className="hidden md:block">
-                        <Button size="sm" variant="customoutlinebtn" className="text-base font-normal px-6 py-4">
+                        <Button size="sm" variant="customoutlinebtn" className="text-base font-normal tracking-wide px-6 py-4">
                             Home
                         </Button>
                     </Link>
                     <Link href="/courses" className="hidden md:block">
-                        <Button size="sm" variant="customoutlinebtn" className="text-base font-normal px-6 py-4">
+                        <Button size="sm" variant="customoutlinebtn" className="text-base font-normal tracking-wide px-6 py-4">
                             Courses
                         </Button>
                     </Link>
                     <Link href="/ugc-papers" className="hidden md:block">
-                        <Button size="sm" variant="customoutlinebtn" className="text-base font-normal px-6 py-4">
+                        <Button size="sm" variant="customoutlinebtn" className="text-base font-normal tracking-wide px-6 py-4">
                             UGC NET PREVIOUS YEAR PAPERS
                         </Button>
                     </Link>
                     <Link href="/login" className="hidden md:block">
-                        <Button size="sm" variant="customprimarybtn" className="text-base font-normal px-6 py-4">
+                        <Button size="sm" variant="customprimarybtn" className="text-base font-normal tracking-wide px-6 py-4">
                             Login
                         </Button>
                     </Link>
