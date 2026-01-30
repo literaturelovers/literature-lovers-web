@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { ToastProvider } from '@/components/providers/toaster-provider';
 import { ConfettiProvider } from '@/components/providers/confetti-provider';
+import { Merriweather_Sans } from "next/font/google";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const merriweather = Merriweather_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -28,25 +23,8 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <head>
-        {/* Preload critical fonts for performance */}
-        <link
-          rel="preload"
-          href="/app/fonts/GeistVF.woff"
-          as="font"
-          type="font/woff"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/app/fonts/GeistMonoVF.woff"
-          as="font"
-          type="font/woff"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${merriweather.className} antialiased`}
       >
         <ConfettiProvider/>
         <ToastProvider />

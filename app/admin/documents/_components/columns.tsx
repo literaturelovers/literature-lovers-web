@@ -4,16 +4,9 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Document } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react";
+import { ArrowUpDown, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 export const columns: ColumnDef<Document>[] = [
     {
@@ -72,28 +65,25 @@ export const columns: ColumnDef<Document>[] = [
     },
     {
         id: "actions",
+        header: () => {
+            return (
+                <Button
+                    variant="ghost"
+                >
+                    Actions
+                </Button>
+            )
+        },
         cell: ({ row }) => {
             const { id } = row.original;
 
             return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="p-0 h-4 w-8">
-                            <span className="sr-only">
-                                Open Menu
-                            </span>
-                            <MoreHorizontal className="h-4 w-4"/>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <Link href={`/admin/documents/${id}`}>
-                            <DropdownMenuItem>
-                                <Pencil className="h-4 w-4 mr-2" />
-                                Edit
-                            </DropdownMenuItem>
-                        </Link>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                <Link href={`/admin/documents/${id}`} className="w-full flex items-center justify-center">
+                    <Button variant="outline">
+                        <Pencil className="h-4 w-4 mr-2" />
+                        Edit
+                    </Button>
+                </Link>
             )
         }
     }

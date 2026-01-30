@@ -25,7 +25,6 @@ model Document {
 
   title       String  @db.String
   description String? @db.String
-  imageUrl    String? @db.String
   resourceUrl String? @db.String
   isPublished Boolean? @default(false)
 

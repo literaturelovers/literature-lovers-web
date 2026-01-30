@@ -22,12 +22,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Combobox } from "@/components/ui/combobox";
-import { FileUpload } from "@/components/file-upload";
 
 const formSchema = z.object({
     title: z.string().min(1, { message: "Title is required!" }),
     description: z.string().min(1, { message: "Description is required!" }),
-    imageUrl: z.string().min(1, { message: "Image is required!" }),
     categoryId: z.string().min(1, { message: "Category is required!" }),
 });
 
@@ -45,7 +43,6 @@ export function CreateDocumentForm({
         defaultValues: {
             title: "",
             description: "",
-            imageUrl: "",
             categoryId: "",
         },
     });
@@ -136,28 +133,6 @@ export function CreateDocumentForm({
                             <FormDescription>
                                 A short summary students will see on the document page.
                             </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-
-                <FormField
-                    control={form.control}
-                    name="imageUrl"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Cover image</FormLabel>
-                            <FormControl>
-                                <div className="space-y-3">
-                                    <FileUpload
-                                        endpoint="documentImage"
-                                        onChange={(url) => {
-                                            if (url) field.onChange(url);
-                                        }}
-                                    />
-                                </div>
-                            </FormControl>
-                            <FormDescription>16:9 aspect ratio recommended.</FormDescription>
                             <FormMessage />
                         </FormItem>
                     )}

@@ -15,13 +15,13 @@ const AdminLayout = async ({
 
     return (
         <div className="">
-            <div className="h-[80px] md:pl-56 fixed inset-y-0 w-full z-40">
+            <div className="h-[80px] md:pl-48 fixed inset-y-0 w-full z-40">
                 <Navbar/>
             </div>
-            <div className="hidden md:flex top-0 left-0 h-full w-56 flex-col fixed inset-y-0 z-40">
+            <div className="hidden md:flex top-0 left-0 h-full w-48 flex-col fixed inset-y-0 z-40">
                 <Sidebar/>
             </div>
-            <main className="md:pl-56 pt-[80px] min-h-screen">
+            <main className="md:pl-48 pt-[80px] min-h-screen">
                 {children}
             </main>
         </div>

@@ -1,15 +1,15 @@
 "use client"
-import { Layers3, NotebookText } from "lucide-react"
+import { LayoutDashboard, FileText } from "lucide-react"
 import { SidebarItem } from "./sidebar-item";
 
 const adminRoutes = [
     {
-        icon: NotebookText,
+        icon: FileText,
         label: "Documents",
         href: "/admin/documents",
     },
     {
-        icon: Layers3,
+        icon: LayoutDashboard,
         label: "Categories",
         href: "/admin/category",
     },

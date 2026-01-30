@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import toast from "react-hot-toast";
-import { DocumentCard } from "./document-card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,8 +15,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 type DocumentListItem = {
   id: string;
   title: string;
-  imageUrl: string;
-  description?: string | null;
 };
 
 const schema = z.object({
@@ -82,6 +79,8 @@ export const DocumentsGrid = ({ documents }: { documents: DocumentListItem[] }) 
       // Store flag in localStorage so the form appears only once
       if (typeof window !== "undefined") {
         localStorage.setItem("literatureLoversDocumentFormSeen", "true");
+        localStorage.setItem("literatureLoversUserName", String(form.getValues("name") ?? ""));
+        localStorage.setItem("literatureLoversUserPhone", String(form.getValues("phone") ?? ""));
       }
 
       setOpen(false);
@@ -96,17 +95,35 @@ export const DocumentsGrid = ({ documents }: { documents: DocumentListItem[] }) 
 
   return (
     <>
-      <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4">
-        {documents.map((document) => (
-          <DocumentCard
-            key={document.id}
-            id={document.id}
-            title={document.title}
-            imageUrl={document.imageUrl || "/tally-book.png"}
-            description={document.description}
-            onClick={onCardClick}
-          />
-        ))}
+      <div className="flex flex-col w-full max-w-5xl mx-auto">
+
+        {/* List Section */}
+        <div className="flex flex-col w-full">
+          {documents.map((document, index) => (
+            <div key={document.id} className="divide-y divide-[#E6EAF2]">
+              <button
+                type="button"
+                onClick={() => onCardClick(document.id)}
+                className="w-full text-left py-5 hover:bg-gray-50 transition-colors p-3"
+              >
+                <div className="flex items-center gap-3">
+                  {/* NEW Badge */}
+                  <span className="bg-red-500 text-white text-xs font-bold px-2.5 py-0.5 rounded-md uppercase tracking-wide">
+                    NEW
+                  </span>
+                  {/* Date and Shift */}
+                  <span className="text-gray-900 text-base font-normal">
+                    {document.title}
+                  </span>
+                </div>
+              </button>
+              {/* Separator Line */}
+              {index < documents.length - 1 && (
+                <div className="w-full h-px bg-gray-200" />
+              )}
+            </div>
+          ))}
+        </div>
       </div>
 
       <Dialog

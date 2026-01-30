@@ -23,7 +23,7 @@ export async function PATCH(
             return new NextResponse("Not Found!", {status: 404})
         }
 
-        if (!document.title || !document.description || !document.imageUrl){
+        if (!document.title || !document.description){
             return new NextResponse("Missing required fields", { status: 400 } )
         }
 

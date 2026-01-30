@@ -8,7 +8,6 @@ export const getDocuments = async (): Promise<Document[]> => {
                 id: true,
                 title: true,
                 description: true,
-                imageUrl: true,
                 categoryId: true,
                 isPublished: true,
                 createdAt: true,

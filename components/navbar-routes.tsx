@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { Logo } from "@/app/admin/_components/logo";
+import { Logo } from "@/components/logo";
 import { CircleUser } from "lucide-react";
 import { useEffect, useState } from "react";
 import {

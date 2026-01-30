@@ -7,7 +7,6 @@ import { CategoryTabs } from "@/app/_components/category-tabs";
 interface Document {
   id: string;
   title: string;
-  imageUrl: string | null;
   description?: string | null;
   categoryId?: string | null;
 }
@@ -62,7 +61,6 @@ export const HomeMain = ({ documents, categories }: HomeMainProps) => {
             documents={filteredDocuments.map((document) => ({
               id: document.id,
               title: document.title,
-              imageUrl: document.imageUrl,
               description: document.description,
             }))}
           />

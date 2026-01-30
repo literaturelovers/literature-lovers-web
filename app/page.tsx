@@ -26,7 +26,6 @@ const HomePage = async ({ searchParams }: SearchParamsProps) => {
     select: {
       id: true,
       title: true,
-      imageUrl: true,
       description: true,
       categoryId: true,
     },

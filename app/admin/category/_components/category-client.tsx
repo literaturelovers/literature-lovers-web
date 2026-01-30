@@ -5,12 +5,12 @@ import toast from "react-hot-toast";
 import { EditCategoryDialog } from "@/components/modals/edit-category.modal"
 import { CreateCategoryDialog } from "@/components/modals/create-category.modal"
 import { ConfirmModal } from "@/components/modals/confirm.modal";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
+import { Document } from "@prisma/client";
 interface Category {
-    id: string;
-    name: string;
-    createdAt: Date;
+  id: string;
+  name: string;
+  createdAt: Date;
+  documents: Document[];
 }
 
 interface CategoryClientProps {
@@ -21,34 +21,65 @@ const CategoryClient = ({ categories }: CategoryClientProps) => {
 
   const deleteCategory = async (categoryId: string) => {
     try {
-        await axios.delete(`/api/category/${categoryId}`)
-        toast.success("Category deleted");
+      await axios.delete(`/api/category/${categoryId}`)
+      toast.success("Category deleted");
     } catch (error) {
-        toast.error("Something went wrong.")
-        console.log("Error while deleting category: ", error)
+      toast.error("Something went wrong.")
+      console.log("Error while deleting category: ", error)
     }
   };
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-semibold">Categories</h1>
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5 mb-6">
+        <div>
+          <h1 className="text-2xl font-semibold">Manage Categories</h1>
+          <p className="text-sm text-muted-foreground">Manage and organize your categories</p>
+        </div>
         <CreateCategoryDialog />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center gap-2 xl:gap-4">
         {categories.map((category) => (
-          <Card
+          <div
             key={category.id}
-            className="group border border-muted bg-card/60 hover:bg-card hover:shadow-md hover:border-primary/80 transition duration-500"
+            className="
+              relative rounded-xl border border-[#E6EAF2]
+              bg-[#ACABBF]
+              transition
+              hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)]
+            "
           >
-            <CardHeader className="pb-3">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-base">
-                  {category.name}
-                </CardTitle>
+            <div className="bg-[#FBFCFF] p-3 rounded-l-sm rounded-r-xl ml-[6px]">
+              {/* Header */}
+              <div className="flex items-start justify-between">
+                <div>
+                  {/* Title */}
+                  <h3 className="text-[18px] font-semibold text-[#0F172A]">
+                    {category.name}
+                  </h3>
 
-                <div className="flex items-center gap-2">
+                  {/* Created On */}
+                  <div className="mt-1 flex gap-2">
+                    <span
+                      className="
+                        rounded-full
+                        bg-[#F1F5F9]
+                        px-3
+                        py-1
+                        text-[11px]
+                        font-semibold
+                        tracking-wide
+                        text-[#475569]
+                      "
+                    >
+                      {category.documents.length || 0} {category.documents.length === 1 ? "Document" : "Documents"}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="flex gap-3 text-[#94A3B8]">
                   <EditCategoryDialog category={category} />
                   <ConfirmModal onConfirm={() => deleteCategory(category.id)}>
                     <button
@@ -71,20 +102,34 @@ const CategoryClient = ({ categories }: CategoryClientProps) => {
                   </ConfirmModal>
                 </div>
               </div>
-            </CardHeader>
 
-            <CardContent className="pt-0">
-              <p className="text-xs text-muted-foreground">
-                Created on{" "}
-                {new Date(category.createdAt).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "short",
-                  day: "2-digit",
-                })}
-              </p>
-            </CardContent>
-          </Card>
+              {/* Pills */}
+              <div className="mt-5 flex items-center gap-2 text-[13px] text-[#44484e]">
+                <svg
+                  width="14"
+                  height="14"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <path d="M8 2v4M16 2v4M3 10h18" />
+                </svg>
+
+                <span>
+                  Created on{" "}
+                  {new Date(category.createdAt).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "2-digit",
+                    year: "numeric",
+                  })}
+                </span>
+              </div>
+            </div>
+          </div>
         ))}
+
       </div>
     </div>
   );

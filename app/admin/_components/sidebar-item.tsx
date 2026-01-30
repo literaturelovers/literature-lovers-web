@@ -14,10 +14,8 @@ export const SidebarItem = ({icon: Icon, label, href}: SidebarItemProps) => {
     const pathname = usePathname()
     const router = useRouter()
 
-    const isActive =
-        (pathname === "/dashboard" && href === "/dashboard")  ||
-        pathname === href ||
-        pathname?.startsWith(`${href}/dashboard`);
+    const isActive = pathname === href ||
+        pathname?.startsWith(`${href}/`);
 
 
     const onClick = () => {

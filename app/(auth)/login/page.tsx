@@ -3,9 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-// import { Logo } from "@/components/logo";
 import axios from "axios";
 import { Eye, EyeOff, BookOpen, Sparkles } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function SignInForm() {
     const router = useRouter();
@@ -85,45 +86,54 @@ export default function SignInForm() {
             </div>
 
             {/* Main container */}
-            <div className="relative w-full max-w-6xl m-4 md:m-8 lg:mx-16">
-                <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl shadow-indigo-900/10 overflow-hidden border border-indigo-100 grid grid-cols-1 lg:grid-cols-2">
+            <div className="relative w-full max-w-6xl m-4 md:m-8 lg:mx-16 text-gray-800">
+                <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl shadow-indigo-900/10 overflow-hidden border border-indigo-300 grid grid-cols-1 lg:grid-cols-2">
 
                     {/* Left side - Brand */}
-                    <div className="relative bg-gradient-to-br from-indigo-900 via-purple-800 to-indigo-800 p-4 md:p-12 lg:p-16 flex flex-col items-center justify-center text-center lg:text-left overflow-hidden">
+                    <div className="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-indigo-80 p-4 md:p-12 lg:p-16 flex flex-col items-center justify-center text-center lg:text-left overflow-hidden">
                         {/* Decorative pattern */}
                         <div className="absolute inset-0 opacity-5">
-                            <div className="absolute top-0 right-0 w-64 h-64 border-2 border-white rounded-full -mr-32 -mt-32"></div>
-                            <div className="absolute bottom-0 left-0 w-64 h-64 border-2 border-white rounded-full -ml-32 -mb-32"></div>
+                            <div className="absolute top-0 right-0 w-64 h-64 border-2 border-indigo-700 rounded-full -mr-32 -mt-32"></div>
+                            <div className="absolute bottom-0 left-0 w-64 h-64 border-2 border-indigo-700 rounded-full -ml-32 -mb-32"></div>
                         </div>
 
-                        <div className="relative z-10 flex flex-col items-center lg:items-start gap-6 text-white">
+                        <div className="relative z-10 flex flex-col items-center lg:items-start gap-6">
                             <div className="flex items-center gap-3">
-                                <div className="p-3 bg-white/10 rounded-2xl backdrop-blur-sm">
-                                    <BookOpen className="w-10 h-10 text-indigo-200" />
+                                <div className="p-3 bg-indigo-900/10 rounded-2xl backdrop-blur-sm">
+                                    <BookOpen className="w-10 h-10 text-indigo-800" />
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Sparkles className="w-5 h-5 text-yellow-300" />
-                                    <Sparkles className="w-4 h-4 text-yellow-300" />
-                                    <Sparkles className="w-3 h-3 text-yellow-300" />
+                                    <Sparkles className="w-5 h-5 text-yellow-600" />
+                                    <Sparkles className="w-4 h-4 text-yellow-600" />
+                                    <Sparkles className="w-3 h-3 text-yellow-600" />
                                 </div>
                             </div>
 
-                            <div className="space-y-4">
-                                <h1 className="text-3xl lg:text-6xl font-bold leading-tight tracking-tight">
-                                    Literature <span className="text-indigo-200">Lovers</span>
-                                </h1>
-                                <p className="text-indigo-100 text-xl lg:text-2xl font-light tracking-wide">
+                            <div className="space-y-4 group">
+                                <Link href="/" className="flex flex-col lg:flex-row items-center gap-4">
+                                    <Image
+                                        height={120}
+                                        width={120}
+                                        alt="logo"
+                                        src="/logo.png"
+                                        sizes="120px"
+                                    />
+                                    <h1 className="text-3xl lg:text-6xl font-bold leading-tight tracking-tight">
+                                        Literature <span className="text-indigo-800">Lovers</span>
+                                    </h1>
+                                </Link>
+                                <p className="text-black text-xl lg:text-2xl font-light tracking-wide">
                                     Pages Come Alive
                                 </p>
                             </div>
 
-                            <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent via-indigo-300/30 to-transparent my-4"></div>
+                            <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent via-indigo-800/30 to-transparent my-4"></div>
 
                             <div className="space-y-3 hidden md:block">
-                                <p className="text-indigo-100/90 text-lg">
+                                <p className="text-black text-lg">
                                     Discover worlds within words
                                 </p>
-                                <p className="text-indigo-200/80 text-sm">
+                                <p className="text-black text-sm">
                                     Your personal literary sanctuary awaits
                                 </p>
                             </div>

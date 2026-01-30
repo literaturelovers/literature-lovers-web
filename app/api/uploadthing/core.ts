@@ -6,20 +6,7 @@ import { z } from "zod";
 
 const f = createUploadthing();
 
-const handleAuth = () => {
-    if (!isAdmin()) {
-        throw new UploadThingError("Unauthorized");
-    }
-
-    return { role: "admin" };
-}
-
 export const ourFileRouter = {
-    documentImage: f({
-            image: { maxFileSize: "4MB", maxFileCount: 1 }
-        })
-        .middleware(() => handleAuth())
-        .onUploadComplete(() => {}),
 
     documentAttachment: f({
         pdf: { maxFileSize: "64MB" },

@@ -6,7 +6,7 @@ export async function POST(
     req: Request,
 ) {
     try {
-        const { title, description, imageUrl, categoryId, resourceUrl } = await req.json()
+        const { title, description, categoryId, resourceUrl } = await req.json()
 
         if(!isAdmin()) {
             return new NextResponse("Unauthorized request", { status: 401 })
@@ -16,7 +16,6 @@ export async function POST(
             data: {
                 title,
                 description,
-                imageUrl,
                 categoryId,
                 resourceUrl,
             }

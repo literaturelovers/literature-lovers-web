@@ -23,7 +23,7 @@ export const MobileNav = () => {
             </SheetTrigger>
             <SheetContent
                 side="left"
-                className="p-0 bg-white"
+                className="p-0 bg-white w-full"
                 onClick={handleClick}
             >
                 <MobileSidebar />
