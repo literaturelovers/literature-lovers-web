@@ -46,7 +46,7 @@ const MobileSidebar = () => {
                 })
             }
 
-            <Link href="/login" className="block md:hidden">
+            <Link href="https://courses.literaturelovers.in/login?orgCode=wuhud" className="block md:hidden">
                 <button
                     className="h-[52px] max-w-min text-sm font-bold active:font-bold tracking-wide px-6 py-4 rounded-[8px] bg-[#F41828] text-white"
                 >

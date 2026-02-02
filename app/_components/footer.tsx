@@ -39,6 +39,9 @@ export const Footer = () => (
           </span>
           <span>literaturelovers1@gmail.com</span>
         </Link>
+        <div className="text-xs uppercase tracking-widest text-gray-800 text-center mt-5">
+          Developed by <Link href="https://www.softles.in/" target="_blank" className="text-[#F41828]">Softles</Link>
+        </div>
       </div>
       <div className="flex items-center gap-2">
         <Link target="_blank" className="bg-[#F41828] h-[42px] w-[42px] rounded-full flex items-center justify-center px-[6px] py-[1px] text-[13.33px] m-2" href="https://www.facebook.com/people/Literature-Lovers/100063686092349/">

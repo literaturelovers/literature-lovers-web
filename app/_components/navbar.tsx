@@ -42,7 +42,7 @@ export const Navbar = () => {
                             );
                         })
                     }
-                    <Link href="/login" className="hidden md:block">
+                    <Link href="https://courses.literaturelovers.in/login?orgCode=wuhud" className="hidden md:block">
                         <button className="text-sm font-bold active:font-bold tracking-wide px-6 py-4 rounded-[8px] bg-[#F41828] text-white">
                             Login
                         </button>
